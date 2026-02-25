@@ -9,5 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/paciente")
 public class PacienteController {
 
-    public void Cadastrar(@RequestBody DadosCadastroPaciente dados){}
+    public void Cadastrar(@RequestBody DadosCadastroPaciente dados){
+    }
 }
