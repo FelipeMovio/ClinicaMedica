@@ -1,4 +1,4 @@
 package com.clinicaMed.api.medico;
 
-public record DadosCadastroMedico(String nome, String email, String crm) {
+public record DadosCadastroMedico(String nome, String email, String crm, Especialidade especialidade) {
 }
