@@ -21,6 +21,10 @@ public class Medico {
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
 
+    // @Embedded:
+    // Incorpora os campos de Endereco diretamente na tabela "medico".
+    // NÃO cria uma nova tabela.
+    // Os atributos de Endereco viram colunas da tabela medico.
     @Embedded
     private Endereco endereco;
 }

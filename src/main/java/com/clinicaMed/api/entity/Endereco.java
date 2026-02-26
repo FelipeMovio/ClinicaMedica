@@ -11,6 +11,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
+// @Embeddable:
+// Indica que essa classe pode ser embutida em uma entidade.
+// NÃO é uma entidade.
+// NÃO possui @Id.
+// NÃO gera tabela própria.
+// Existe apenas dentro de outra entidade.
 public class Endereco {
 
     private String logradouro;
