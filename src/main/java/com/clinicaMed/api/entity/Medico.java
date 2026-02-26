@@ -1,10 +1,7 @@
 package com.clinicaMed.api.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
@@ -12,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table
+@EqualsAndHashCode(of = "id")
 public class Medico {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
