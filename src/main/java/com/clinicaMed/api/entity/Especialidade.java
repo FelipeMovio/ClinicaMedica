@@ -1,4 +1,4 @@
-package com.clinicaMed.api.entity.medico;
+package com.clinicaMed.api.entity;
 
 public enum Especialidade {
 

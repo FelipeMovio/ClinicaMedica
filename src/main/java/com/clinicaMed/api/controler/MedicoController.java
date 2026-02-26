@@ -1,6 +1,6 @@
 package com.clinicaMed.api.controler;
 
-import com.clinicaMed.api.entity.medico.DadosCadastroMedico;
+import com.clinicaMed.api.Dto.DadosCadastroMedicoDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class MedicoController {
 
     @PostMapping
-    public void cadastrar(@RequestBody DadosCadastroMedico dados){}
+    public void cadastrar(@RequestBody DadosCadastroMedicoDTO dados){}
 }
