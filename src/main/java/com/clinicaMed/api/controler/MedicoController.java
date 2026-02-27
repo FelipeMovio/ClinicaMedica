@@ -5,6 +5,7 @@ import com.clinicaMed.api.Dto.DadosEnderecoDTO;
 import com.clinicaMed.api.entity.Endereco;
 import com.clinicaMed.api.entity.Medico;
 import com.clinicaMed.api.repository.MedicoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody DadosCadastroMedicoDTO dados){
+    public void cadastrar(@RequestBody @Valid DadosCadastroMedicoDTO dados){
 
 
         Medico medico = new Medico(null,
