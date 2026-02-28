@@ -1,6 +1,8 @@
 package com.clinicaMed.api.controler;
 
 import com.clinicaMed.api.Dto.DadosCadastroPacienteDTO;
+import com.clinicaMed.api.entity.Endereco;
+import com.clinicaMed.api.entity.Paciente;
 import com.clinicaMed.api.repository.PacientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,5 +17,20 @@ public class PacienteController {
     private PacientesRepository repository;
 
     public void Cadastrar(@RequestBody DadosCadastroPacienteDTO dados){
+
+        Paciente paciente = new Paciente(null,
+                dados.nome(),
+                dados.email(),
+                dados.telefone(),
+                dados.cpf(),
+                new Endereco(
+                        dados.endereco().logradouro(),
+                        dados.endereco().cep(),
+                        dados.endereco().cidade(),
+                        dados.endereco().numero(),
+                        dados.endereco().complemento(),
+                        dados.endereco().uf()
+                )
+                );
     }
 }
