@@ -3,7 +3,7 @@ package com.clinicaMed.api.controler;
 import com.clinicaMed.api.Dto.DadosCadastroPacienteDTO;
 import com.clinicaMed.api.entity.Endereco;
 import com.clinicaMed.api.entity.Paciente;
-import com.clinicaMed.api.repository.PacientesRepository;
+import com.clinicaMed.api.repository.PacienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PacienteController {
 
     @Autowired
-    private PacientesRepository repository;
+    private PacienteRepository repository;
 
     @PostMapping
     @Transactional
