@@ -4,7 +4,10 @@ import com.clinicaMed.api.Dto.DadosCadastroPacienteDTO;
 import com.clinicaMed.api.entity.Endereco;
 import com.clinicaMed.api.entity.Paciente;
 import com.clinicaMed.api.repository.PacientesRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +19,9 @@ public class PacienteController {
     @Autowired
     private PacientesRepository repository;
 
-    public void Cadastrar(@RequestBody DadosCadastroPacienteDTO dados){
+    @PostMapping
+    @Transactional
+    public void Cadastrar(@RequestBody @Valid DadosCadastroPacienteDTO dados){
 
         Paciente paciente = new Paciente(null,
                 dados.nome(),
@@ -32,5 +37,6 @@ public class PacienteController {
                         dados.endereco().uf()
                 )
                 );
+        repository.save(paciente);
     }
 }
