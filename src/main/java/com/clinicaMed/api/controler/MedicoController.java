@@ -28,6 +28,7 @@ public class MedicoController {
         Medico medico = new Medico(null,
                 dados.nome(),
                 dados.email(),
+                dados.telefone(),
                 dados.crm(),
                 dados.especialidade(),
                 new Endereco(
