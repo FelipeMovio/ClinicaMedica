@@ -48,6 +48,6 @@ public class MedicoController {
     @GetMapping
     public List<DadosListagemMedico> listar(){
 
-        return repository.findAll();
+        return repository.findAll().stream().map(DadosListagemMedico::new).toList();
     }
 }
