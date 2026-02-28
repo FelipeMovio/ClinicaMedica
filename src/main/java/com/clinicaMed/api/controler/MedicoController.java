@@ -1,8 +1,7 @@
 package com.clinicaMed.api.controler;
 
 import com.clinicaMed.api.Dto.DadosCadastroMedicoDTO;
-import com.clinicaMed.api.Dto.DadosEnderecoDTO;
-import com.clinicaMed.api.Dto.DadosListagemMedico;
+import com.clinicaMed.api.Dto.DadosListagemMedicoDTO;
 import com.clinicaMed.api.entity.Endereco;
 import com.clinicaMed.api.entity.Medico;
 import com.clinicaMed.api.repository.MedicoRepository;
@@ -46,13 +45,13 @@ public class MedicoController {
 
 
     @GetMapping
-    public List<DadosListagemMedico> listar(){
+    public List<DadosListagemMedicoDTO> listar(){
 
         return repository.findAll().stream()
                 // Para cada objeto Medico retornado do banco,
                 // cria um novo objeto DadosListagemMedico (DTO),
                 // convertendo a entidade em um objeto próprio para resposta da API
-                .map(DadosListagemMedico::new)
+                .map(DadosListagemMedicoDTO::new)
                 .toList();
     }
 }
