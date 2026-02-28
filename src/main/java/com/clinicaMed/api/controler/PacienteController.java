@@ -1,16 +1,16 @@
 package com.clinicaMed.api.controler;
 
 import com.clinicaMed.api.Dto.DadosCadastroPacienteDTO;
+import com.clinicaMed.api.Dto.DadosListagemPacienteDTO;
 import com.clinicaMed.api.entity.Endereco;
 import com.clinicaMed.api.entity.Paciente;
 import com.clinicaMed.api.repository.PacienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")
@@ -38,5 +38,13 @@ public class PacienteController {
                 )
                 );
         repository.save(paciente);
+    }
+
+    @GetMapping
+    public List<DadosListagemPacienteDTO> listar(){
+        return repository.findAll()
+                .stream()
+                .map(DadosListagemPacienteDTO::new)
+                .toList();
     }
 }
