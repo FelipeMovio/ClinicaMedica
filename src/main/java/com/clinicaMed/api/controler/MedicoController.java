@@ -48,6 +48,11 @@ public class MedicoController {
     @GetMapping
     public List<DadosListagemMedico> listar(){
 
-        return repository.findAll().stream().map(DadosListagemMedico::new).toList();
+        return repository.findAll().stream()
+                // Para cada objeto Medico retornado do banco,
+                // cria um novo objeto DadosListagemMedico (DTO),
+                // convertendo a entidade em um objeto próprio para resposta da API
+                .map(DadosListagemMedico::new)
+                .toList();
     }
 }
