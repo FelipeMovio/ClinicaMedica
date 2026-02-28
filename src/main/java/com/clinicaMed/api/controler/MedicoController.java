@@ -2,6 +2,7 @@ package com.clinicaMed.api.controler;
 
 import com.clinicaMed.api.Dto.DadosCadastroMedicoDTO;
 import com.clinicaMed.api.Dto.DadosEnderecoDTO;
+import com.clinicaMed.api.Dto.DadosListagemMedico;
 import com.clinicaMed.api.entity.Endereco;
 import com.clinicaMed.api.entity.Medico;
 import com.clinicaMed.api.repository.MedicoRepository;
@@ -45,7 +46,7 @@ public class MedicoController {
 
 
     @GetMapping
-    public List<Medico> listar(){
+    public List<DadosListagemMedico> listar(){
 
         return repository.findAll();
     }
