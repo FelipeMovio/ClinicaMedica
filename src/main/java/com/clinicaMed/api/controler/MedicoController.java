@@ -7,6 +7,8 @@ import com.clinicaMed.api.entity.Medico;
 import com.clinicaMed.api.repository.MedicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,13 +47,12 @@ public class MedicoController {
 
 
     @GetMapping
-    public List<DadosListagemMedicoDTO> listar(){
+    public Page<DadosListagemMedicoDTO> listar(Pageable paginacao){
 
-        return repository.findAll().stream()
+        return repository.findAll(paginacao)
                 // Para cada objeto Medico retornado do banco,
                 // cria um novo objeto DadosListagemMedico (DTO),
                 // convertendo a entidade em um objeto próprio para resposta da API
-                .map(DadosListagemMedicoDTO::new)
-                .toList();
+                .map(DadosListagemMedicoDTO::new);
     }
 }
