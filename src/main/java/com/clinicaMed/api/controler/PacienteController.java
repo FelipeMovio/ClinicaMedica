@@ -34,7 +34,7 @@ public class PacienteController {
                 new Endereco(
                         dados.endereco().logradouro(),
                         dados.endereco().cep(),
-                        dados.endereco().cidade(),
+                        dados.endereco().bairro(),
                         dados.endereco().numero(),
                         dados.endereco().complemento(),
                         dados.endereco().uf()
