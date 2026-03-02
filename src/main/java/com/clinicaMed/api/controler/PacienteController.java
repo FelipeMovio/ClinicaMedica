@@ -1,5 +1,6 @@
 package com.clinicaMed.api.controler;
 
+import com.clinicaMed.api.Dto.DadosAtualizacaoPacientes;
 import com.clinicaMed.api.Dto.DadosCadastroPacienteDTO;
 import com.clinicaMed.api.Dto.DadosListagemPacienteDTO;
 import com.clinicaMed.api.entity.Endereco;
@@ -47,5 +48,12 @@ public class PacienteController {
     public Page<DadosListagemPacienteDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
         return repository.findAll(paginacao)
                 .map(DadosListagemPacienteDTO::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoPacientes dados){
+        Paciente paciente = repository.getReferenceById(dados.id());
+                paciente.atualizarInformacoes(dados);
     }
 }

@@ -1,7 +1,9 @@
 package com.clinicaMed.api.entity;
 
 
+import com.clinicaMed.api.Dto.DadosAtualizacaoPacientes;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 @Getter
@@ -23,4 +25,19 @@ public class Paciente {
 
     @Embedded
     private Endereco endereco;
+
+    public void atualizarInformacoes(@Valid DadosAtualizacaoPacientes dados) {
+
+        if (dados.nome() != null){
+            this.nome = dados.nome();
+        }
+
+        if (dados.telefone() != null){
+            this.telefone = dados.telefone();
+        }
+
+        if (dados.endereco() != null){
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+    }
 }
