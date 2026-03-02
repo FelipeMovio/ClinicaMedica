@@ -56,4 +56,8 @@ public class MedicoController {
                 // convertendo a entidade em um objeto próprio para resposta da API
                 .map(DadosListagemMedicoDTO::new);
     }
+
+    public void atualizar(@RequestBody @Valid){
+
+    }
 }
