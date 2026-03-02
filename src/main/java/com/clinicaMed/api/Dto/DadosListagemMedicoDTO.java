@@ -4,6 +4,7 @@ import com.clinicaMed.api.entity.Especialidade;
 import com.clinicaMed.api.entity.Medico;
 
 public record DadosListagemMedicoDTO(
+        Long id,
         String nome,
         String email,
         String crm,
@@ -11,6 +12,6 @@ public record DadosListagemMedicoDTO(
 
 ) {
     public DadosListagemMedicoDTO(Medico medico){
-        this(medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade());
+        this(medico.getId(), medico.getNome(), medico.getEmail(), medico.getCrm(), medico.getEspecialidade());
     }
 }
