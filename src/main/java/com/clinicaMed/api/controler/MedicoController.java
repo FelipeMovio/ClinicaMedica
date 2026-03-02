@@ -1,5 +1,6 @@
 package com.clinicaMed.api.controler;
 
+import com.clinicaMed.api.Dto.DadosAtualizacaoMedico;
 import com.clinicaMed.api.Dto.DadosCadastroMedicoDTO;
 import com.clinicaMed.api.Dto.DadosListagemMedicoDTO;
 import com.clinicaMed.api.entity.Endereco;
@@ -57,7 +58,11 @@ public class MedicoController {
                 .map(DadosListagemMedicoDTO::new);
     }
 
-    public void atualizar(@RequestBody @Valid){
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
+        Medico medico = repository.getReferenceById(dados.id());
 
+        medico.atualizarInformacoes(dados);
     }
 }
