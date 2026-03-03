@@ -68,7 +68,7 @@ public class MedicoController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void excluir(@RequestParam Long id){
+    public void excluir(@PathVariable Long id){
 
     }
 }
