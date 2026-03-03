@@ -26,7 +26,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroMedicoDTO dados){
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid DadosCadastroMedicoDTO dados){
 
 
         Medico medico = new Medico(null,
@@ -46,25 +46,29 @@ public class MedicoController {
         );
 
         repository.save(medico);
+        return ResponseEntity.ok().build();
+
     }
 
 
     @GetMapping
-    public Page<DadosListagemMedicoDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemMedicoDTO>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
 
-        return repository.findAll(paginacao)
+        Page<DadosListagemMedicoDTO> medicos = repository.findAll(paginacao)
                 // Para cada objeto Medico retornado do banco,
                 // cria um novo objeto DadosListagemMedico (DTO),
                 // convertendo a entidade em um objeto próprio para resposta da API
                 .map(DadosListagemMedicoDTO::new);
+        return ResponseEntity.ok(medicos);
     }
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
+    public ResponseEntity <Void> atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
         Medico medico = repository.getReferenceById(dados.id());
 
         medico.atualizarInformacoes(dados);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
