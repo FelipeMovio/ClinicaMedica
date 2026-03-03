@@ -65,4 +65,10 @@ public class MedicoController {
 
         medico.atualizarInformacoes(dados);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@RequestParam Long id){
+
+    }
 }
