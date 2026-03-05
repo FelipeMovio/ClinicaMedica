@@ -66,6 +66,7 @@ public class PacienteController {
     @Transactional
     public ResponseEntity <Void> excluir(@PathVariable Long id){
 
+        repository.deleteById(id);
 
         return ResponseEntity.ok().build();
     }
