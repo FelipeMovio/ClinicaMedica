@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class PacienteController {
 
     @PostMapping
     @Transactional
-    public void Cadastrar(@RequestBody @Valid DadosCadastroPacienteDTO dados){
+    public ResponseEntity<Void> Cadastrar(@RequestBody @Valid DadosCadastroPacienteDTO dados){
 
         Paciente paciente = new Paciente(null,
                 dados.nome(),
@@ -42,18 +43,22 @@ public class PacienteController {
                 )
                 );
         repository.save(paciente);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public Page<DadosListagemPacienteDTO> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
-        return repository.findAll(paginacao)
+    public ResponseEntity< Page<DadosListagemPacienteDTO> >listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
+         Page<DadosListagemPacienteDTO> pacientes = repository.findAll(paginacao)
                 .map(DadosListagemPacienteDTO::new);
+         return ResponseEntity.ok(pacientes);
     }
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoPacientes dados){
+    public ResponseEntity<Void> atualizar(@RequestBody @Valid DadosAtualizacaoPacientes dados){
         Paciente paciente = repository.getReferenceById(dados.id());
                 paciente.atualizarInformacoes(dados);
+
+        return ResponseEntity.noContent().build();
     }
 }
