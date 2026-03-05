@@ -27,6 +27,8 @@ public record DadosCadastroMedicoDTO(
 
         @NotNull
         @Valid
-        DadosEnderecoDTO endereco
+        DadosEnderecoDTO endereco,
+
+        Boolean ativo
 )
 {}

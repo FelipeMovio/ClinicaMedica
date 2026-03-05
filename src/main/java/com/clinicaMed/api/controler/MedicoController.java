@@ -42,7 +42,8 @@ public class MedicoController {
                         dados.endereco().numero(),
                         dados.endereco().complemento(),
                         dados.endereco().uf()
-                )
+                ),
+                dados.ativo()
         );
 
         repository.save(medico);
@@ -54,7 +55,7 @@ public class MedicoController {
     @GetMapping
     public ResponseEntity<Page<DadosListagemMedicoDTO>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao){
 
-        Page<DadosListagemMedicoDTO> medicos = repository.findAll(paginacao)
+        Page<DadosListagemMedicoDTO> medicos = repository.findAllByAtivoTrue(paginacao)
                 // Para cada objeto Medico retornado do banco,
                 // cria um novo objeto DadosListagemMedico (DTO),
                 // convertendo a entidade em um objeto próprio para resposta da API
@@ -75,7 +76,9 @@ public class MedicoController {
     @Transactional
     public ResponseEntity<Void> excluir(@PathVariable Long id){
 
-       repository.deleteById(id);
-       return ResponseEntity.ok().build();
+        Medico medico = repository.getReferenceById(id);
+        medico.excluir();
+
+        return ResponseEntity.ok().build();
     }
 }
