@@ -61,4 +61,12 @@ public class PacienteController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity <Void> excluir(@PathVariable Long id){
+
+
+        return ResponseEntity.ok().build();
+    }
 }
